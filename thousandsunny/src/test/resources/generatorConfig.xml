@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+<classPathEntry  location="F:\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+	<context id="context1" >
+	<!-- property*,plugin*,commentGenerator?,jdbcConnection,javaTypeResolver?,javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+ -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/jfinaldemo" userId="root" password="ekoo1101" />
+		<!-- model的配置  -->
+		<javaModelGenerator targetPackage="bean" targetProject="thousandsunny" />
+		
+		<!--mybatis的xml的配置  -->
+		<sqlMapGenerator targetPackage="mapping" targetProject="thousandsunny" />
+		
+		<!--mapper的配置  -->
+		<javaClientGenerator targetPackage="mapper" targetProject="thousandsunny" type="XMLMAPPER" />
+
+		<table schema="jfinaldemo" tableName="user" domainObjectName="com.ekoo.springdemo.bean.User">
+		</table>
+	</context>
+</generatorConfiguration>
