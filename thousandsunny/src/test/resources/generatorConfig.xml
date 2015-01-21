@@ -3,18 +3,29 @@
 <generatorConfiguration>
 <classPathEntry  location="F:\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
 	<context id="context1" >
-	<!-- property*,plugin*,commentGenerator?,jdbcConnection,javaTypeResolver?,javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+ -->
+		<commentGenerator>    
+            <property name="suppressDate" value="true"/>    
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->    
+            <property name="suppressAllComments" value="true"/>    
+        </commentGenerator> 
+		<!-- property*,plugin*,commentGenerator?,jdbcConnection,javaTypeResolver?,javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+ -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/jfinaldemo" userId="root" password="ekoo1101" />
 		<!-- model的配置  -->
-		<javaModelGenerator targetPackage="bean" targetProject="thousandsunny" />
+		<javaModelGenerator targetPackage="com.ekoo.springdemo.bean" targetProject="thousandsunny/src/main/java" >
+			<property name="enableSubPackages" value="true"/>
+		</javaModelGenerator>
 		
 		<!--mybatis的xml的配置  -->
-		<sqlMapGenerator targetPackage="mapping" targetProject="thousandsunny" />
+		<sqlMapGenerator targetPackage="mapping" targetProject="thousandsunny/src/main/resources" >
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
 		
 		<!--mapper的配置  -->
-		<javaClientGenerator targetPackage="mapper" targetProject="thousandsunny" type="XMLMAPPER" />
+		<javaClientGenerator targetPackage="com.ekoo.springdemo.mapper" targetProject="thousandsunny/src/main/java" type="XMLMAPPER" >
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
 
-		<table schema="jfinaldemo" tableName="user" domainObjectName="com.ekoo.springdemo.bean.User">
+		<table schema="jfinaldemo" tableName="user"  selectByExampleQueryId="false" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false">
 		</table>
 	</context>
 </generatorConfiguration>
