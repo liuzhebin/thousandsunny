@@ -18,6 +18,7 @@ import com.ekoo.springdemo.service.UserService;
 /**
  * Handles requests for the application home page.
  */
+@RequestMapping("home")
 @Controller
 public class HomeController {
 	
@@ -27,9 +28,9 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	@RequestMapping("/first")
+	public String first(Locale locale, Model model) {
+		/*logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -39,8 +40,26 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		User user= userService.findById(2);
-		System.out.println(user.getName());
-		return "home";
+		System.out.println(user.getName())*/;
+		
+		System.out.println("first");
+		return "index";
 	}
 	
+	@RequestMapping("/second")
+	public String second() {
+		System.out.println("second");
+		return "index";
+	}
+	
+	@RequestMapping("/third")
+	public String third() {
+		System.out.println("third");
+		return "index";
+	}
+	
+	@RequestMapping("/error")
+	public String error() {
+		return "index";
+	}
 }

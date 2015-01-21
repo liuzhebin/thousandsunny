@@ -2,28 +2,51 @@
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-	<!-- Appenders -->
+	<!--输出日志 Appenders -->
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-	
+	<!--保存日志 Appenders -->
+
+	<appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${appRoot}/logs/run.log" />
+		<param name="Threshold" value="DEBUG" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p] %d [%c.%M] - %m%n" />
+		</layout>
+	</appender>
+
+	<!--保存日志到数据库 Appenders -->
+	<appender name="database" class="org.apache.log4j.jdbc.JDBCAppender">
+		<param name="URL" value="jdbc:mysql://127.0.0.1:3306/jfinaldemo" />
+		<param name="driver" value="com.mysql.jdbc.Driver" />
+		<param name="user" value="root" />
+		<param name="password" value="ekoo1101" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value='insert into operlog (logdate, loglevel, module, function, message) values ("%d{yyyy-MM-dd HH:mm:ss}","%p", "%c{1}", "%M", "%m")' />
+		</layout>
+	</appender>
+
 	<!-- Application Loggers -->
 	<logger name="com.ekoo.springdemo">
 		<level value="info" />
+		<appender-ref ref="database" />
 	</logger>
-	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.beans">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.context">
 		<level value="info" />
 	</logger>
@@ -36,6 +59,7 @@
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
+		<appender-ref ref="file" />
 	</root>
-	
+
 </log4j:configuration>
