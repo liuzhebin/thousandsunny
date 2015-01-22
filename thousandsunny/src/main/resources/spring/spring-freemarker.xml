@@ -22,8 +22,7 @@
 
 	<!-- FreeMarker视图解析 如返回userinfo。。在这里配置后缀名ftl和视图解析器。。 -->
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
 		<property name="suffix" value=".ftl" />
 		<property name="contentType" value="text/html;charset=GBK" />
 		<property name="exposeRequestAttributes" value="true" />
@@ -31,26 +30,4 @@
 		<property name="exposeSpringMacroHelpers" value="true" />
 	</bean>
 
-
-	<!-- 系统错误转发配置[并记录错误日志] -->
-	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="error"></property>   默认为500，系统错误(error.jsp)
-		<property name="defaultStatusCode" value="500"></property>
-		<property name="statusCodes">配置多个statusCode
-			<props>
-				<prop key="error">500</prop>  error.jsp
-				<prop key="index">404</prop>    index.jsp
-			</props>
-		</property>
-		<property name="exceptionMappings">
-			<props>
-				这里你可以根据需要定义N多个错误异常转发
-				<prop key="java.sql.SQLException">dbError</prop> 数据库错误(dbError.jsp)
-				<prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop> 参数绑定错误(如：必须参数没传递)(bizError.jsp)
-				<prop key="java.lang.IllegalArgumentException">bizError</prop>  参数错误(bizError.jsp)
-				<prop key="org.springframework.validation.BindException">bizError</prop>  参数类型有误(bizError.jsp)
-				<prop key="java.lang.Exception">unknowError</prop>  其他错误为'未定义错误'(unknowError.jsp)
-			</props>
-		</property>
-	</bean> -->
 </beans>
