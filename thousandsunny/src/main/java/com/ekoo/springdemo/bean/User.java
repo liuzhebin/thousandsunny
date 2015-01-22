@@ -7,7 +7,17 @@ public class User {
 
     private Integer age;
 
-    public Integer getId() {
+    public User() {
+		super();
+	}
+
+	public User(Integer id, String name, Integer age) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+
+	public Integer getId() {
         return id;
     }
 
