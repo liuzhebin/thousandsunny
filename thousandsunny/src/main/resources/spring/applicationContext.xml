@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -13,26 +11,25 @@
 		infrastructure -->
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
-	<!-- Enables the Spring MVC @@Transactional -->
-	<tx:annotation-driven/>
+	<!-- Enables the Spring MVC @Transactional -->
+	<tx:annotation-driven />
 	<!-- scan component -->
 	<context:component-scan base-package="com.ekoo.springdemo" />
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- <bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
- -->
- <!-- =================================================================================================== -->
- <!-- freemarker的配置 -->
- <!-- =================================================================================================== -->
- 
-	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/WEB-INF/views/" /> <property name="suffix" 
+		value=".jsp" /> </bean> -->
+	<!-- =================================================================================================== -->
+	<!-- freemarker的配置 -->
+	<!-- =================================================================================================== -->
+
+	<bean
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="templateLoaderPath" value="/WEB-INF/views/" />
 		<property name="defaultEncoding" value="GBK" />
 		<property name="freemarkerSettings">
@@ -47,40 +44,46 @@
 	</bean>
 
 	<!-- FreeMarker视图解析 如返回userinfo。。在这里配置后缀名ftl和视图解析器。。 -->
-	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+	<bean
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
 		<property name="suffix" value=".ftl" />
 		<property name="contentType" value="text/html;charset=GBK" />
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 	</bean>
-<!-- =================================================================================================== -->
-<!--  Mybatis数据库配置-->
-<!-- =================================================================================================== -->
- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<!-- =================================================================================================== -->
+	<!-- Mybatis数据库配置 -->
+	<!-- =================================================================================================== -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties" />
 	</bean>
-	<bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
 		<!-- 初始化连接大小 -->
-		<property name="initialSize" value="${initialSize}"/>
+		<property name="initialSize" value="${initialSize}" />
 		<!-- 连接池最大数量 -->
-		<property name="maxActive" value="${maxActive}"/>
+		<property name="maxActive" value="${maxActive}" />
 		<!-- 连接池最大空闲 -->
-		<property name="maxIdle" value="${maxIdle}"/>
+		<property name="maxIdle" value="${maxIdle}" />
 		<!-- 连接池最小空闲 -->
-		<property name="minIdle" value="${minIdle}"/>
+		<property name="minIdle" value="${minIdle}" />
 		<!-- 获取连接最大等待时间 -->
-		<property name="maxWait" value="${maxWait}"/>
+		<property name="maxWait" value="${maxWait}" />
 	</bean>
 	<!-- 配置事务异常封装 -->
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	<!-- 配置事务管理器 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="datasource" />
 	</bean>
 
@@ -89,45 +92,36 @@
 		<!-- 自动扫描mapping.xml文件 -->
 		<property name="mapperLocations" value="classpath:mapping/*.xml" />
 	</bean>
-	
+
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.ekoo.springdemo.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
 	</bean>
-<!-- =================================================================================================== --> 
-<!--  拦截器配置-->
-<!-- =================================================================================================== -->
- 	
+	<!-- =================================================================================================== -->
+	<!-- 拦截器配置 -->
+	<!-- =================================================================================================== -->
+
 	<mvc:interceptors>
 		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
 		<bean class="com.ekoo.springdemo.interceptor.AllInterceptror" />
 		<mvc:interceptor>
 			<mvc:mapping path="/home/*" />
-			<mvc:exclude-mapping path="/home/error"/>
+			<mvc:exclude-mapping path="/home/error" />
 			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
 			<bean class="com.ekoo.springdemo.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-<!-- =================================================================================================== -->
-<!-- 系统错误转发配置[并记录错误日志] -->
-<!-- =================================================================================================== -->
-<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="/WEB-INF/views/home.jsp"/>   默认为404，系统错误(index.ftl)
-		<property name="defaultStatusCode" value="404"/>
-		<property name="statusCodes">配置多个statusCode
-			<props>
-				<prop key="error">500</prop>  error.jsp
-			</props>
-		</property>
-		<property name="exceptionMappings">
-			<props>
-				这里你可以根据需要定义N多个错误异常转发
-				<prop key="java.sql.SQLException">dbError</prop> 数据库错误(dbError.jsp)
-				<prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop> 参数绑定错误(如：必须参数没传递)(bizError.jsp)
-				<prop key="java.lang.IllegalArgumentException">bizError</prop>  参数错误(bizError.jsp)
-				<prop key="org.springframework.validation.BindException">bizError</prop>  参数类型有误(bizError.jsp)
-				<prop key="java.lang.Exception">unknowError</prop>  其他错误为'未定义错误'(unknowError.jsp)
-			</props>
-		</property>
-	</bean> -->
+	<!-- =================================================================================================== -->
+	<!-- 系统错误转发配置[并记录错误日志] -->
+	<!-- =================================================================================================== -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="defaultErrorView" value="/WEB-INF/views/home.jsp"/> 默认为404，系统错误(index.ftl) 
+		<property name="defaultStatusCode" value="404"/> <property name="statusCodes">配置多个statusCode 
+		<props> <prop key="error">500</prop> error.jsp </props> </property> <property 
+		name="exceptionMappings"> <props> 这里你可以根据需要定义N多个错误异常转发 <prop key="java.sql.SQLException">dbError</prop> 
+		数据库错误(dbError.jsp) <prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop> 
+		参数绑定错误(如：必须参数没传递)(bizError.jsp) <prop key="java.lang.IllegalArgumentException">bizError</prop> 
+		参数错误(bizError.jsp) <prop key="org.springframework.validation.BindException">bizError</prop> 
+		参数类型有误(bizError.jsp) <prop key="java.lang.Exception">unknowError</prop> 其他错误为'未定义错误'(unknowError.jsp) 
+		</props> </property> </bean> -->
 </beans>
