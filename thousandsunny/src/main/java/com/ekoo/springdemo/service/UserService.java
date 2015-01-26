@@ -7,5 +7,7 @@ import com.ekoo.springdemo.exception.MyException;
 public interface UserService {
 	User findById(int i);
 
-	boolean addUser(User user) throws  MyException;
+	boolean addUser(User user) throws  Exception;
+
+	User findByName(String name);
 }

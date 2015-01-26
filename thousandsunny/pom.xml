@@ -42,7 +42,12 @@
             <groupId>org.springframework</groupId>  
             <artifactId>spring-context-support</artifactId>  
             <version>${org.springframework-version}</version>  
-        </dependency> 
+        </dependency>
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency> 
         <!-- freeMarker -->
         <dependency>
             <groupId>org.freemarker</groupId>
