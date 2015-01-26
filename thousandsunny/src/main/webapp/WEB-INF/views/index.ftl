@@ -31,7 +31,7 @@
         <div class="list-group col-md-11 text-center" id="nav">
           <div class="list-group-item">
             <h4 class="panel-title"><a data-toggle="collapse" data-parent="#nav" href="#nav1">产品管理<span class="caret"></span></a></h4>
-            <div id="nav1" class="panel-collapse collapse in">
+            <div id="nav1" class="panel-collapse collapse">
               <div class="panel-body"> <a href="http://www.baidu.com" target="main">body</a><br>
               </div>
             </div>
@@ -52,12 +52,18 @@
       </div>
     </div>
     <div class=" col-md-10">
-      <div class="embed-responsive embed-responsive-4by3">
-        <iframe name="main" class="embed-responsive-item" src="#">
-        
-        <div class="panel panel-default">ffff</div>
-        
-        </iframe>
+       <div class="row">
+
+          <div class="panel-group col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body" style="padding:0px">
+                <div class="embed-responsive embed-responsive-4by3">
+                  <iframe name="main" class="embed-responsive-item" src="http://www.bootcss.com/"> </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
       </div>
     </div>
   </div>
