@@ -16,12 +16,19 @@
         <ul class="nav navbar-nav navbar-right">
         <#if Request.user?exists>  
 	       	<li><a>ÄãºÃ,${Session.user.name}!</a></li>
+	       	 <li><a href="#"><span class="glyphicon glyphicon-envelope"></span><span class="badge">42</span></a></li>
 	    <#else>
-			<li><a href="#">µÇÂ¼</a></li>
+			<li><a href="user/login">µÇÂ¼</a></li>
           	<li class="divider"></li>
           	<li><a href="#">×¢²á</a></li>
 		 </#if>  
         </ul>
+         <form class="navbar-form navbar-right" role="search">
+          <div class="form-group-sm input-group">
+         	 <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input type="text" class="form-control form-control-static" placeholder="Search">
+          </div>
+        </form>
       </div>
     </nav>
   </div>
@@ -53,7 +60,11 @@
     </div>
     <div class=" col-md-10">
        <div class="row">
-
+        <ol class="breadcrumb">
+	        <li><a href="#">Home</a></li>
+	        <li><a href="#">Library</a></li>
+	        <li class="active">Data</li>
+     	 </ol>
           <div class="panel-group col-md-12">
             <div class="panel panel-default">
               <div class="panel-body" style="padding:0px">
